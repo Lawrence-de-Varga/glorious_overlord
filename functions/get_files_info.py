@@ -1,6 +1,8 @@
 from pathlib import Path
+from decorators import type_check_decorator
 
 
+@type_check_decorator([Path | str, str | Path | None])
 def get_files_info(working_directory: str, directory=None) -> str:
     w_dir = Path(working_directory).resolve()
 
@@ -12,6 +14,8 @@ def get_files_info(working_directory: str, directory=None) -> str:
     if directory:
         directory_path = Path(w_dir / directory).resolve()
         print(directory_path)
+    else:
+        return f"Error: {directory} is None or false."
 
     if not directory_path.exists():
         # print("does not exist")
@@ -32,4 +36,4 @@ def get_files_info(working_directory: str, directory=None) -> str:
     return contents_info
 
 
-# get_files_info(Path.cwd(), Path(Path.cwd() / "calculator"))
+print(get_files_info(345, True))
