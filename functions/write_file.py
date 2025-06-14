@@ -5,6 +5,16 @@ from checking import extant_dir, extant_file, exists
 
 @type_check_decorator([str | Path, str | Path, str])
 def write_file(working_directory, file_path, content):
+    """
+    Takes a path to a directory and path to a file
+    and a string of content to be written.
+    Ensures that the directory exists.
+    Ensures that the file is within the specified directory
+    and overwrites it if it exists.
+    If it does not exist, it ensures that the path is
+    within the specified directory and creates and writes to it.
+    """
+
     wd_path = Path(working_directory).resolve()
 
     # check if given directory path exists and is a directory.
