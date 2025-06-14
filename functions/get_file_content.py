@@ -34,6 +34,3 @@ def get_file_content(working_directory, file_path):
         return f"Error reading file: {f_path} content - {e}"
 
     return content_string
-
-
-print(get_file_content("../calculator", "../calculator/cheese.txt"))

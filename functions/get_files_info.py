@@ -46,6 +46,3 @@ def get_files_info(working_directory, directory=None) -> str:
         return f"Error listing files: {e}"
 
     return contents_info
-
-
-print(get_files_info("../calculator", "../"))

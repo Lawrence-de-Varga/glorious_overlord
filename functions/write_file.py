@@ -41,17 +41,3 @@ def write_file(working_directory, file_path, content):
 
     except Exception as e:
         return f"Error: failed to create or write to {f_path} with error: {e}"
-
-
-print(write_file("../calculator/", "../calculator/cheese.py", "cheese is the GOAT"))
-print(
-    write_file(
-        "../calculator", "../calculator/lorem.txt", "wait, this isn't lorem ipsum"
-    )
-)
-print(
-    write_file(
-        "../calculator", "../calculator/pkg/morelorem.txt", "lorem ipsum dolor sit amet"
-    )
-)
-print(write_file("../calculator", "/tmp/temp.txt", "this should not be allowed"))
