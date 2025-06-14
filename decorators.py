@@ -1,5 +1,10 @@
-# takes a list of types to check the functions arguments with
 def type_check_decorator(param_types: list):
+    """
+    Ensures that the types of positional arguments match the list of
+    types given to the decorator.
+    Does not work on keyword args.
+    """
+
     def decorate(function_to_check):
         def wrapper(*args, **kwargs):
             idx = 0

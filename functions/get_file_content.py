@@ -5,6 +5,13 @@ from checking import extant_dir, extant_file
 
 @type_check_decorator([Path | str, Path | str])
 def get_file_content(working_directory, file_path):
+    """
+    Takes a directory path or string and a file path or string.
+    Ensures that the directry exists and that the file
+    exists and is within the specified directory.
+    It reads and returns the content of the file.
+    """
+
     wd_path = Path(working_directory).resolve()
     exd = extant_dir(wd_path)
     # check if path exists and points to a dir

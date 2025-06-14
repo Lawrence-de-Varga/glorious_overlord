@@ -1,6 +1,11 @@
 from pathlib import Path
 from decorators import type_check_decorator
 
+# used to check various properties of
+# paths passed to functions
+# returns strings instead of False or errors
+# to be fed back to the agent
+
 
 @type_check_decorator([Path])
 def dir_check(obj):

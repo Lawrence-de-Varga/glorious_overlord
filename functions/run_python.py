@@ -7,6 +7,13 @@ import sys
 
 @type_check_decorator([Path | str, Path | str])
 def run_python_file(working_directory, file_path):
+    """
+    Takes a path to a directory and a file path
+    ensures that the directory is valid and that the file
+    is a .py file and in within the given directory.
+    It then runs the python file with a 15 second time out.
+    """
+
     wd_path = Path(working_directory).resolve()
 
     # Check that wd_path exists and is a dir
@@ -32,12 +39,10 @@ def run_python_file(working_directory, file_path):
 
     # Attempt to run the give file. 15 second timeout.
     try:
-        result = subprocess.run(["/usr/bin/python", f_path], timeout=15, check=True)
+        result = subprocess.run([sys.executable, f_path], timeout=15, check=True)
     except subprocess.CalledProcessError as e:
         return f"Process exited with code: {e.returncode}"
 
-    print(result.stdout)
-    print(result.stderr)
     doutderr = []
     if not result.stdout:
         doutderr.append("No stdout was produced.")
@@ -52,11 +57,11 @@ def run_python_file(working_directory, file_path):
     return doutderr
 
 
-print(run_python_file("../calculator", "main.py"))
-print()
-print(run_python_file("../calculator", "tests.py"))
-print()
-print(run_python_file("../calculator", "../../cheese.py"))
-print()
-print(run_python_file("../calculator", "nonexistent.py"))
-print()
+# print(run_python_file("../calculator", "main.py"))
+# print()
+# print(run_python_file("../calculator", "tests.py"))
+# print()
+# print(run_python_file("../calculator", "../../cheese.py"))
+# print()
+# print(run_python_file("../calculator", "nonexistent.py"))
+# print()
