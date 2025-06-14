@@ -6,7 +6,7 @@ from decorators import type_check_decorator
 def get_files_info(working_directory: str, directory=None) -> str:
     w_dir = Path(working_directory).resolve()
 
-    print(w_dir.resolve())
+    # print(w_dir.resolve())
     if not w_dir.exists():
         # print("does not exist")
         return f"Error: {w_dir} does not exist on this machine."
