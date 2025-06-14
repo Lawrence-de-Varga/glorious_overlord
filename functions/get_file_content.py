@@ -1,32 +1,22 @@
 from pathlib import Path
 from decorators import type_check_decorator
+from checking import extant_dir, extant_file
 
 
 @type_check_decorator([Path | str, Path | str])
 def get_file_content(working_directory, file_path):
-    w_dir = Path(working_directory).resolve()
-    # print(w_dir)
-    if not w_dir.exists():
-        # print("w_dir does not exist.")
-        return f"Error: {w_dir} does not exist."
+    wd_path = Path(working_directory).resolve()
+    exd = extant_dir(wd_path)
+    if not isinstance(exd, bool):
+        return exd
 
-    if not w_dir.is_dir():
-        # print("w_dir is not a dir.")
-        return f"Error: {w_dir} is not a directory."
-
-    f_path = Path(w_dir / file_path).resolve()
-    # print(f_path)
-
-    if not f_path.exists():
-        # print("f_path does not exist.")
-        return f"Error: {f_path} does not exist."
-
-    if not f_path.is_file():
-        # print("f_path is not a file.")
-        return f'Error: File not found or is not a regular file: "{f_path}"'
+    f_path = Path(wd_path / file_path).resolve()
+    exd = extant_file(f_path)
+    if not isinstance(exd, bool):
+        return exd
 
     try:
-        f_path.relative_to(w_dir)
+        f_path.relative_to(wd_path)
     except ValueError:
         return f'Error: Cannot read "{f_path}" as it is outside the permitted working directory'
 
@@ -44,4 +34,4 @@ def get_file_content(working_directory, file_path):
     return content_string
 
 
-# print(get_file_content(Path.cwd(), "345"))
+print(get_file_content("../calculator", "../calculator/main.py"))
