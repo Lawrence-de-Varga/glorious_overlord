@@ -31,12 +31,15 @@ def get_file_content(working_directory, file_path):
         return f'Error: Cannot read "{f_path}" as it is outside the permitted working directory'
 
     content_string = ""
-    with f_path.open() as f:
-        content_string += f.read()
+    try:
+        with f_path.open() as f:
+            content_string += f.read()
 
-    if len(content_string) > 10000:
-        content_string = content_string[:10000]
-        content_string += '[...File "{file_path}" truncated at 10000 characters]'
+        if len(content_string) > 10000:
+            content_string = content_string[:10000]
+            content_string += '[...File "{file_path}" truncated at 10000 characters]'
+    except Exception as e:
+        return f"Error reading file: {f_path} content - {e}"
 
     return content_string
 

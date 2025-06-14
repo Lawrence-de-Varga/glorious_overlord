@@ -30,10 +30,13 @@ def get_files_info(working_directory: str, directory=None) -> str:
         return f'Error: "{directory}" is not a directory'
 
     contents_info = ""
-    for obj in directory_path.iterdir():
-        contents_info += f"- {obj.name}: file_size={obj.stat().st_size} bytes, is_dir={obj.is_dir()}\n"
+    try:
+        for obj in directory_path.iterdir():
+            contents_info += f"- {obj.name}: file_size={obj.stat().st_size} bytes, is_dir={obj.is_dir()}\n"
+    except Exception as e:
+        return f"Error listting files: {e}"
 
     return contents_info
 
 
-print(get_files_info(345, True))
+# print(get_files_info(345, True))

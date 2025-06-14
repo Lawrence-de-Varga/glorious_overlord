@@ -6,8 +6,7 @@ def type_check_decorator(param_types: list):
             for param in param_types:
                 if idx in range(len(args)):
                     if not isinstance(args[idx], param_types[idx]):
-                        print(idx)
-                            return f"Error: Arg -- {args[idx]} -- must be of type: {param_types[idx]}. But it is of type: {type(args[idx])}."
+                        return f"Error: Arg -- {args[idx]} at pos: {idx} must be of type: {param_types[idx]}. But it is of type: {type(args[idx])}."
                     idx += 1
                 elif (idx - len(args)) in range(len(kwargs)):
                     if not isinstance(
