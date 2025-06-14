@@ -1,13 +1,22 @@
 import unittest
 
-from functions.get_files_info import get_files_info
+# from functions.get_files_info import get_files_info
+from functions.get_file_content import get_file_content
 
 
-class Test_get_files_info(unittest.TestCase):
-    print(get_files_info("calculator", "."))
+class Test_get_file_content(unittest.TestCase):
+    print(get_file_content("calculator", "main.py"))
 
-    print(get_files_info("calculator", "pkg"))
+    print(get_file_content("calculator", "pkg/calculator.py"))
 
-    print(get_files_info("calculator", "/bin"))
+    print(get_file_content("calculator", "/bin/cat"))
 
-    print(get_files_info("calculator", "../"))
+
+# class Test_get_files_info(unittest.TestCase):
+#     print(get_files_info("calculator", "."))
+
+#     print(get_files_info("calculator", "pkg"))
+
+#     print(get_files_info("calculator", "/bin"))
+
+#     print(get_files_info("calculator", "../"))
