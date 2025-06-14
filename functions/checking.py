@@ -25,23 +25,29 @@ def exists(obj):
 
 @type_check_decorator([Path])
 def extant_file(obj):
-    e = exists(obj)
-    f = file_check(obj)
+    try:
+        e = exists(obj)
+        f = file_check(obj)
 
-    if not isinstance(e, bool):
-        return e
-    if not isinstance(f, bool):
-        return f
-    return True
+        if not isinstance(e, bool):
+            return e
+        if not isinstance(f, bool):
+            return f
+        return True
+    except Exception as e:
+        return f"Error: extant_file failed with error: {e}"
 
 
 @type_check_decorator([Path])
 def extant_dir(obj):
-    e = exists(obj)
-    d = dir_check(obj)
+    try:
+        e = exists(obj)
+        d = dir_check(obj)
 
-    if not isinstance(e, bool):
-        return e
-    if not isinstance(d, bool):
-        return d
-    return True
+        if not isinstance(e, bool):
+            return e
+        if not isinstance(d, bool):
+            return d
+        return True
+    except Exception as e:
+        return f"Error: extant_dir failed with error: {e}"

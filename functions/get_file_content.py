@@ -11,9 +11,11 @@ def get_file_content(working_directory, file_path):
         return exd
 
     f_path = Path(wd_path / file_path).resolve()
-    exd = extant_file(f_path)
-    if not isinstance(exd, bool):
-        return exd
+    print(wd_path)
+    print(f_path)
+    exf = extant_file(f_path)
+    if not isinstance(exf, bool):
+        return exf
 
     try:
         f_path.relative_to(wd_path)
@@ -34,4 +36,4 @@ def get_file_content(working_directory, file_path):
     return content_string
 
 
-print(get_file_content("../calculator", "../calculator/main.py"))
+print(get_file_content("../calculator", "../calculator/cheese.txt"))
